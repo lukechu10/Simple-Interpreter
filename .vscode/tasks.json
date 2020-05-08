@@ -1,0 +1,22 @@
+{
+    "tasks": [
+        {
+            "type": "process",
+            "label": "build debug with cmake",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build" // build folder
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build"
+        }
+    ],
+    "version": "2.0.0"
+}
+// C:\Program Files\CMake\bin\cmake.exe --build build --config Debug --target all -- -j 10

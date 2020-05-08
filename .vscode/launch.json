@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceRoot}\\build\\Interpreter.exe"
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "miDebuggerPath": "/usr/bin/lldb-mi",
+                "program": "${workspaceRoot}/build/Interpreter",
+            },
+            "preLaunchTask": "build debug with cmake"
+        }
+    ]
+}
