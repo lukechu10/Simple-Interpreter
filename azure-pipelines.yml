@@ -22,10 +22,10 @@ pool:
 steps:
 - task: CMake@1
   inputs:
-    workingDirectory: .
-    cmakeArgs: '-S src -B build'
+    workingDirectory: build
+    cmakeArgs: '-S ../ -B .'
 - task: CMake@1
   inputs:
-    workingDirectory: .
+    workingDirectory: build
     cmakeArgs: '--build .'
 
