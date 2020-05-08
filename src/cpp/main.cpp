@@ -2,6 +2,7 @@
 
 #include "Lexer.h"
 #include "Token.h"
+#include "AST.h"
 
 using namespace std;
 

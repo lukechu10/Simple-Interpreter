@@ -15,7 +15,7 @@
             "externalConsole": true,
             "windows": {
                 "type": "cppvsdbg",
-                "program": "${workspaceRoot}\\build\\Interpreter.exe"
+                "program": "${workspaceRoot}\\build\\Debug\\Interpreter.exe"
             },
             "linux": {
                 "type": "cppdbg",

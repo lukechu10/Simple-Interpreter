@@ -21,6 +21,27 @@ class Token {
 
 	Type type() const noexcept { return m_type; }
 	bool isType(Type t) const noexcept { return m_type == t; }
+	bool isLiteral() const noexcept {
+		switch (m_type) {
+			case Type::IntegerLiteral:
+			case Type::DoubleLiteral:
+				return true;
+			default:
+				return false;
+		}
+	}
+
+	bool isOperator() const noexcept {
+		switch (m_type) {
+			case Type::OperatorPlus:
+			case Type::OperatorMinus:
+			case Type::OperatorAsterix:
+			case Type::OperatorSlash:
+				return true;
+			default:
+				return false;
+		}
+	}
 
 	std::string lexeme() const noexcept { return m_lexeme; }
 	void lexeme(std::string lexeme) noexcept { m_lexeme = std::move(lexeme); }

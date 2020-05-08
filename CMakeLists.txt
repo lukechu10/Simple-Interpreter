@@ -11,6 +11,7 @@ include_directories(src/include)
 add_executable(Interpreter
   src/cpp/main.cpp
   src/cpp/Lexer.cpp
+  src/cpp/AST.cpp
 )
 
 # include(CTest)
