@@ -23,4 +23,9 @@ steps:
 - task: CMake@1
   inputs:
     workingDirectory: build
-    cmakeArgs: 
+    cmakeArgs: '-S ../src -B .'
+- task: CMake@1
+  inputs:
+    workingDirectory: build
+    cmakeArgs: '--build .'
+
