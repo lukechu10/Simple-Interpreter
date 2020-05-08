@@ -1,3 +1,5 @@
+#include <exception>
+
 #include "Lexer.h"
 
 using namespace std;
@@ -9,7 +11,7 @@ Token Lexer::next() {
 	while (isSpace(m_stream->peek())) {
 		m_stream->get();
 	}
-    
+
 	if (m_stream->peek() == EOF) {
         return Token(Token::Type::EndOfFile, "");
 	} else if (isDigit(m_stream->peek())) {
@@ -18,7 +20,7 @@ Token Lexer::next() {
 		return operatorToken();
 	}
 
-	throw "";
+	throw runtime_error("");
 	// return;
 }
 
@@ -73,6 +75,6 @@ Token Lexer::operatorToken() {
 		case '/':
 			return Token(Token::Type::OperatorSlash, "/");
 		default:
-			throw exception("Unknown token");
+			throw runtime_error("Unknown token");
 	}
 }
