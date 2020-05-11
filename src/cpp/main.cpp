@@ -1,8 +1,8 @@
 #include <iostream>
 
+#include "AST.h"
 #include "Lexer.h"
 #include "Token.h"
-#include "AST.h"
 
 using namespace std;
 
@@ -15,8 +15,7 @@ int main() {
 	Token nextToken(Token::Type::EndOfFile, "");
 	do {
 		nextToken = lexer.next();
-		cout << "Type: " << nextToken.type()
-			 << "\tLexeme: " << nextToken.lexeme() << endl;
+		cout << nextToken << endl;
 	} while (!nextToken.isType(Token::Type::End) &&
 			 !nextToken.isType(Token::Type::EndOfFile));
 #pragma endregion

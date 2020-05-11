@@ -1,6 +1,6 @@
-#include <exception>
-
 #include "Lexer.h"
+
+#include <exception>
 
 using namespace std;
 
@@ -13,15 +13,12 @@ Token Lexer::next() {
 	}
 
 	if (m_stream->peek() == EOF) {
-        return Token(Token::Type::EndOfFile, "");
+		return Token(Token::Type::EndOfFile, "");
 	} else if (isDigit(m_stream->peek())) {
 		return integerToken();
-	} else if (isOperator(m_stream->peek())) {
+	} else {
 		return operatorToken();
 	}
-
-	throw runtime_error("");
-	// return;
 }
 
 bool Lexer::isSpace(char c) const noexcept {
@@ -65,16 +62,6 @@ Token Lexer::integerToken() {
 }
 
 Token Lexer::operatorToken() {
-	switch (m_stream->get()) {
-		case '+':
-			return Token(Token::Type::OperatorPlus, "+");
-		case '-':
-			return Token(Token::Type::OperatorMinus, "-");
-		case '*':
-			return Token(Token::Type::OperatorAsterix, "*");
-		case '/':
-			return Token(Token::Type::OperatorSlash, "/");
-		default:
-			throw runtime_error("Unknown token");
-	}
+	char tokenChar = m_stream->get();  // eat character
+	return Token(Token::Type::Character, string(1, tokenChar));
 }
