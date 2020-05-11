@@ -1,7 +1,7 @@
-// /**
-//  * Header file contains declarations for Abstract Syntax Tree (class AST) and
-//  * Abstract Syntax Tree Nodes
-//  */
+/**
+ * Header file contains declarations for Abstract Syntax Tree (class AST) and
+ * Abstract Syntax Tree Nodes
+ */
 #pragma once
 
 #include <vector>

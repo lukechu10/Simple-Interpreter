@@ -12,6 +12,7 @@ add_executable(Interpreter
   src/cpp/main.cpp
   src/cpp/Lexer.cpp
   src/cpp/AST.cpp
+  src/cpp/Parser.cpp
 )
 
 # include(CTest)
