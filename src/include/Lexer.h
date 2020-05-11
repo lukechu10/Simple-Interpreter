@@ -36,7 +36,7 @@ class Lexer {
     /**
      * Reads next token as an operator token
      */
-    Token operatorToken();
+    Token characterToken();
 
 	std::istream* m_stream;
 };

@@ -12,20 +12,22 @@ Token Lexer::next() {
 		m_stream->get();
 	}
 
+	if (m_stream->peek() == '\n' || m_stream->peek() == '\r') {
+		return Token(Token::Type::End, "");
+	}
 	if (m_stream->peek() == EOF) {
+		m_stream->clear();
 		return Token(Token::Type::EndOfFile, "");
 	} else if (isDigit(m_stream->peek())) {
 		return integerToken();
 	} else {
-		return operatorToken();
+		return characterToken();
 	}
 }
 
 bool Lexer::isSpace(char c) const noexcept {
 	switch (c) {
 		case ' ':
-		case '\n':
-		case '\r':
 		case '\t':
 			return true;
 		default:
@@ -61,7 +63,7 @@ Token Lexer::integerToken() {
 	return Token(Token::Type::IntegerLiteral, lexemeBuffer);
 }
 
-Token Lexer::operatorToken() {
+Token Lexer::characterToken() {
 	char tokenChar = m_stream->get();  // eat character
 	return Token(Token::Type::Character, string(1, tokenChar));
 }
