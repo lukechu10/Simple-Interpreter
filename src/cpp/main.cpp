@@ -16,6 +16,7 @@ int main() {
 	do {
 		nextToken = lexer.next();
 		cout << nextToken << endl;
+
 	} while (!nextToken.isType(Token::Type::End) &&
 			 !nextToken.isType(Token::Type::EndOfFile));
 #pragma endregion
