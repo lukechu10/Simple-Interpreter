@@ -1,6 +1,6 @@
-// #include "AST.h"
+#include "AST.h"
 
-// using namespace std;
+using namespace std;
 
 // AST::AST(vector<Token>& tokens) {
 // 	// parse tokens

@@ -2,38 +2,56 @@
 //  * Header file contains declarations for Abstract Syntax Tree (class AST) and
 //  * Abstract Syntax Tree Nodes
 //  */
-// #pragma once
+#pragma once
 
-// #include <vector>
+#include <vector>
 
-// #include "Lexer.h"
+#include "Lexer.h"
 
-// namespace Node {
-// union BinaryExpressionValue {
-// 	BinaryExpression expression;
-// 	Token value;
-// };
+namespace AST {
+/**
+ * Base class for all expression nodes
+ */
+class Expression {
+   public:
+	virtual ~Expression() noexcept {}
+};
 
-// /**
-//  * Represents a node in a binary expression tree
-//  */
-// struct BinaryExpression {
-//    public:
-// 	BinaryExpressionValue left;
-// 	Token operatorToken;
-// 	BinaryExpressionValue right;
-// };
-// }  // namespace Node
+/**
+ * Expression class for integer literals (e.g. "3")
+ */
+class IntegerExpression : public Expression {
+   public:
+	/**
+	 * Create a new IntegerExpression node with value val
+	 */
+	IntegerExpression(long long int val) noexcept : m_val(val) {}
 
-// /**
-//  * Manages an abstract syntax tree root
-//  */
-// class AST {
-//    public:
-// 	/**
-// 	 * Create a new abstract syntax tree
-// 	 * @param tokens list of tokens to be parsed
-// 	 * @throw invalid syntax error
-// 	 */
-// 	explicit AST(std::vector<Token>& tokens);
-// };
+   private:
+	long long int m_val;
+};
+
+/**
+ * Expression class for a binary operator (e.g. "3 + 2")
+ */
+class BinaryExpression : public Expression {
+   public:
+	/**
+	 * Create a new BinaryExpression with operator op and expressions leftExpr
+	 * and rightExpr
+	 * @param op operator char (opcode)
+	 * @param leftExpr left expression
+	 * @param rightExpr right expression
+	 */
+	BinaryExpression(char op, std::unique_ptr<Expression> leftExpr,
+					 std::unique_ptr<Expression> rightExpr)
+		: m_operator(op),
+		  m_leftExpr(std::move(leftExpr)),
+		  m_rightExpr(std::move(rightExpr)) {}
+
+   private:
+	char m_operator;
+	std::unique_ptr<Expression> m_leftExpr;
+	std::unique_ptr<Expression> m_rightExpr;
+};
+}  // namespace AST

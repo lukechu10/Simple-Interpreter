@@ -53,7 +53,11 @@
         "optional": "cpp",
         "fstream": "cpp",
         "sstream": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "ctime": "cpp",
+        "iomanip": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp"
     },
     "C_Cpp.intelliSenseEngineFallback": "Disabled"
 }
