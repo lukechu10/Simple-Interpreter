@@ -32,7 +32,15 @@ class Parser {
 	//	::= numberexpr
 	//	::= parenexpr
 	std::unique_ptr<AST::Expression> parsePrimaryExpression();
+	// binoprhs
+	//	::= ('+' primary)*
+	std::unique_ptr<AST::Expression> parseBinOpRHS(int exprPrecedence, std::unique_ptr<AST::Expression> LHS);
 	std::unique_ptr<AST::Expression> parseExpression();
+
+	/**
+	 * @return the operator precedence of char op
+	 */
+	static int getOpPrecedence(char op);
 
 	std::vector<Token> m_tokens;
 };

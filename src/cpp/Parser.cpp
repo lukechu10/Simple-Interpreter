@@ -1,13 +1,13 @@
 #include "Parser.h"
 
 #include <cassert>
-#include <string>
 #include <memory>
+#include <string>
 
 using namespace std;
 using namespace AST;
 
-void Parser::parse() {}
+void Parser::parse() { parseExpression(); }
 
 const Token& Parser::getNextToken() {
 	assert(m_nextTokenIndex + 1 < m_tokens.size());
@@ -61,6 +61,48 @@ unique_ptr<Expression> Parser::parsePrimaryExpression() {
 	}
 }
 
+unique_ptr<Expression> Parser::parseBinOpRHS(int exprPrecedence,
+											 std::unique_ptr<Expression> LHS) {
+	while (true) {
+		// if binop, get precedence
+		assert(peekNextToken().lexeme().size() > 0);
+		int tokPrecedence = getOpPrecedence(peekNextToken().lexeme()[0]);
+
+		// if this binop has higher precedence than the previous one, consume it
+		if (tokPrecedence < exprPrecedence) return LHS;
+
+		char binOperator = getNextToken().lexeme()[0];
+
+		// parse primary expression after operator
+		auto RHS = parsePrimaryExpression();
+		if (!RHS) return nullptr;
+
+		assert(peekNextToken().lexeme().size() > 0);
+		int nextPrecedence = getOpPrecedence(peekNextToken().lexeme()[0]);
+	
+		if (tokPrecedence < nextPrecedence) {
+			RHS = parseBinOpRHS(tokPrecedence + 1, move(RHS));
+			if (!RHS) return nullptr;
+		}
+
+		// merge RHS and LHS
+		LHS = make_unique<BinaryExpression>(binOperator, move(LHS), move(RHS));
+	}
+}
+
 unique_ptr<Expression> Parser::parseExpression() {
-	return unique_ptr<Expression>();
+	auto LHS = parsePrimaryExpression();
+	if (LHS == nullptr) return nullptr;
+	return parseBinOpRHS(0, move(LHS));
+}
+
+int Parser::getOpPrecedence(char op) {
+	switch (op) {
+		case '+':
+		case '-':
+			return 1;
+		case '*':
+		case '/':
+			return 2;
+	}
 }
