@@ -7,7 +7,6 @@ class Token {
    public:
 	enum class Type : unsigned {
 		IntegerLiteral = 0,
-		DoubleLiteral,
 		End,
 		EndOfFile,
 		Character
@@ -29,9 +28,9 @@ class Token {
 			case Token::Type::IntegerLiteral:
 				os << "IntegerLiteral";
 				break;
-			case Token::Type::DoubleLiteral:
+			/*case Token::Type::DoubleLiteral:
 				os << "DoubleLiteral";
-				break;
+				break;*/
 			case Token::Type::Character:
 				os << "Character";
 				break;
