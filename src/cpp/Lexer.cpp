@@ -6,7 +6,7 @@ using namespace std;
 
 Lexer::Lexer(istream& stream) { m_stream = &stream; }
 
-Token Lexer::next() {
+Token Lexer::getNextToken() {
 	// get all whitespace characters and throw away
 	while (isSpace(m_stream->peek())) {
 		m_stream->get();

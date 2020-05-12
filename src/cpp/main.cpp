@@ -19,7 +19,7 @@ int main() {
 	Token nextToken(Token::Type::EndOfFile, "");
 
 	do {
-		nextToken = lexer.next();
+		nextToken = lexer.getNextToken();
 		cout << nextToken << endl;
 
 		tokens.push_back(nextToken);

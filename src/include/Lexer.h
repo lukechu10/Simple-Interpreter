@@ -11,7 +11,7 @@ class Lexer {
 	 */
 	explicit Lexer(std::istream& stream);
 
-    Token next();
+    Token getNextToken();
 
    private:
 	/**
